@@ -1,6 +1,8 @@
 package com.example.matt.healthfacts;
 
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +41,24 @@ public class HealthFactsActivity extends AppCompatActivity {
         outState.putInt(KEY_COLOR, mColor);
 
     }
+
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        mFact = savedInstanceState.getString(KEY_FACT);
+        mColor = savedInstanceState.getInt(KEY_COLOR);
+
+        mFactTextView.setText(mFact);
+        mRelativeLayout.setBackgroundColor(mColor);
+        mShowFactButton.setTextColor(mColor);
+
+
+
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
