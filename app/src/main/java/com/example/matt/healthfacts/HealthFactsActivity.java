@@ -14,12 +14,32 @@ import java.util.Random;
 
 public class HealthFactsActivity extends AppCompatActivity {
     public static final String TAG = HealthFactsActivity.class.getSimpleName();
+    private static final String KEY_FACT = "KEY_FACT";
+    private static final String KEY_COLOR = "KEY_COLOR";
+
+
+
     //declare view variable
     private TextView mFactTextView;
     private Button mShowFactButton;
     private FactBook mFactBook = new FactBook();
     private ColorWheel mColorWheel = new ColorWheel();
     private RelativeLayout mRelativeLayout;
+    private String mFact;
+    private int mColor;
+
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //technically not a lifecycle method but has bundle
+        super.onSaveInstanceState(outState);
+
+        outState.putString(KEY_FACT, mFact);
+        outState.putInt(KEY_COLOR, mColor);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,14 +48,19 @@ public class HealthFactsActivity extends AppCompatActivity {
         mFactTextView = (TextView)findViewById(R.id.factTextView);
         mShowFactButton = (Button) findViewById(R.id.showFactButton);
         mRelativeLayout = (RelativeLayout) findViewById(R.id.activity_health_facts);
+
+        //set Color
+        mFactTextView.setBackgroundColor(mColorWheel.getColor());
+
+
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fact = mFactBook.getFact();
-                int color = mColorWheel.getColor();
-                mFactTextView.setText(fact);
-                mRelativeLayout.setBackgroundColor(color);
-                mShowFactButton.setTextColor(color);
+                mFact = mFactBook.getFact();
+                mColor = mColorWheel.getColor();
+                mFactTextView.setText(mFact);
+                mRelativeLayout.setBackgroundColor(mColor);
+                mShowFactButton.setTextColor(mColor);
 
             }
         };
