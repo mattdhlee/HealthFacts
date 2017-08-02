@@ -27,8 +27,8 @@ public class HealthFactsActivity extends AppCompatActivity {
     private FactBook mFactBook = new FactBook();
     private ColorWheel mColorWheel = new ColorWheel();
     private RelativeLayout mRelativeLayout;
-    private String mFact;
-    private int mColor;
+    private String mFact = mFactBook.getFact();
+    private int mColor = Color.parseColor(mColorWheel.mColors[8]);
 
 
 

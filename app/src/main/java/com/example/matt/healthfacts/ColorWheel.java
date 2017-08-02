@@ -9,7 +9,7 @@ import java.util.Random;
  */
 
 public class ColorWheel {
-    private String[] mColors = {
+    public String[] mColors = {
             "#39add1", // light blue
             "#3079ab", // dark blue
             "#c25975", // mauve
